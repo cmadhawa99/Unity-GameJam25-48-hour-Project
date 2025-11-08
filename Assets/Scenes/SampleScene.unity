@@ -136,7 +136,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 40
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -239,11 +239,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 83018880}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836a8905719cea84fae96a8f8762bbb9, type: 3}
+  m_Script: {fileID: 11500000, guid: c04f06697d5d8984ea82095db70f4f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: 0
-  force: 50
+  targetAngle: 0
+  strength: 100
+  damping: 50
+  maxTorque: 10000
 --- !u!1 &97918947 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8041323334939135599, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
@@ -287,7 +289,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 40
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -376,11 +378,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 97918947}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836a8905719cea84fae96a8f8762bbb9, type: 3}
+  m_Script: {fileID: 11500000, guid: c04f06697d5d8984ea82095db70f4f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: 0
-  force: 50
+  targetAngle: 0
+  strength: 100
+  damping: 50
+  maxTorque: 10000
 --- !u!1001 &160736293
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -728,18 +732,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 471960303}
-    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 471960305}
     - targetCorrespondingSourceObject: {fileID: 8727091967253889458, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1233490088}
     - targetCorrespondingSourceObject: {fileID: 8727091967253889458, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1233490089}
-    - targetCorrespondingSourceObject: {fileID: 8727091967253889458, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1233490091}
     - targetCorrespondingSourceObject: {fileID: -7505209412420838039, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2090443221}
@@ -749,9 +747,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -7505209412420838039, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2090443219}
-    - targetCorrespondingSourceObject: {fileID: -7505209412420838039, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2090443223}
     - targetCorrespondingSourceObject: {fileID: 4264205489951344557, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1883171408}
@@ -803,9 +798,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2805404538631728759, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2014888885}
-    - targetCorrespondingSourceObject: {fileID: 2805404538631728759, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2014888887}
     - targetCorrespondingSourceObject: {fileID: -2394789321514574078, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 730600091}
@@ -829,7 +821,7 @@ PrefabInstance:
       addedObject: {fileID: 1005228519}
     - targetCorrespondingSourceObject: {fileID: -2749243257623881179, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1005228523}
+      addedObject: {fileID: 1005228527}
     - targetCorrespondingSourceObject: {fileID: 4694084201376273313, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 83018882}
@@ -874,18 +866,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainBody: {fileID: 1233490088}
   moveSpeed: 10
---- !u!114 &471960305
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 471960301}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82b4e5bb990edc049a142df5406c9a7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1183,7 +1163,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 40
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -1266,11 +1246,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 730600087}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836a8905719cea84fae96a8f8762bbb9, type: 3}
+  m_Script: {fileID: 11500000, guid: c04f06697d5d8984ea82095db70f4f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: 0
-  force: 50
+  targetAngle: 0
+  strength: 100
+  damping: 50
+  maxTorque: 10000
 --- !u!1 &1005228517 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2749243257623881179, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
@@ -1374,7 +1356,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 40
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -1389,7 +1371,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1005228523
+--- !u!114 &1005228527
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1398,11 +1380,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1005228517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836a8905719cea84fae96a8f8762bbb9, type: 3}
+  m_Script: {fileID: 11500000, guid: c04f06697d5d8984ea82095db70f4f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: 0
-  force: 150
+  targetAngle: 0
+  strength: 100
+  damping: 50
+  maxTorque: 10000
 --- !u!1 &1046328150 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6290923089992950464, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
@@ -1503,7 +1487,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 40
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -1527,11 +1511,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1046328150}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836a8905719cea84fae96a8f8762bbb9, type: 3}
+  m_Script: {fileID: 11500000, guid: c04f06697d5d8984ea82095db70f4f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: 0
-  force: 150
+  targetAngle: 0
+  strength: 100
+  damping: 50
+  maxTorque: 10000
 --- !u!1 &1099214808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1683,7 +1669,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 40
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -1764,20 +1750,6 @@ PolygonCollider2D:
       - {x: 1.7232628, y: -0.21961413}
       - {x: 1.9835106, y: -0.029391944}
   m_UseDelaunayMesh: 0
---- !u!114 &1233490091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1233490086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836a8905719cea84fae96a8f8762bbb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetRotation: 150
-  force: 0
 --- !u!1 &1308999012 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3952809578437962703, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
@@ -1821,7 +1793,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 40
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -1928,11 +1900,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1308999012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836a8905719cea84fae96a8f8762bbb9, type: 3}
+  m_Script: {fileID: 11500000, guid: c04f06697d5d8984ea82095db70f4f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: 0
-  force: 50
+  targetAngle: 0
+  strength: 100
+  damping: 50
+  maxTorque: 10000
 --- !u!1 &1388412247
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,7 +2103,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 40
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -2227,11 +2201,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1784467188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836a8905719cea84fae96a8f8762bbb9, type: 3}
+  m_Script: {fileID: 11500000, guid: c04f06697d5d8984ea82095db70f4f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: 0
-  force: 50
+  targetAngle: 0
+  strength: 100
+  damping: 50
+  maxTorque: 10000
 --- !u!1 &1883171404 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4264205489951344557, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
@@ -2275,7 +2251,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 40
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -2367,11 +2343,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1883171404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836a8905719cea84fae96a8f8762bbb9, type: 3}
+  m_Script: {fileID: 11500000, guid: c04f06697d5d8984ea82095db70f4f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRotation: 0
-  force: 50
+  targetAngle: 0
+  strength: 100
+  damping: 50
+  maxTorque: 10000
 --- !u!1 &2014888883 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2805404538631728759, guid: 88cf8796c3c18f54c96dee9828ba16ac, type: 3}
@@ -2389,7 +2367,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 40
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -2404,20 +2382,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2014888887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2014888883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836a8905719cea84fae96a8f8762bbb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetRotation: 0
-  force: 0
 --- !u!1 &2046588215
 GameObject:
   m_ObjectHideFlags: 0
@@ -2613,7 +2577,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 40
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -2732,20 +2696,6 @@ PolygonCollider2D:
       - {x: 0.9150345, y: 0.47708395}
       - {x: 0.85669243, y: 0.4478441}
   m_UseDelaunayMesh: 0
---- !u!114 &2090443223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090443217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 836a8905719cea84fae96a8f8762bbb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetRotation: 0
-  force: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
