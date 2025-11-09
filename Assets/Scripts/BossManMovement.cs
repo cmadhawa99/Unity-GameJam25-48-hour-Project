@@ -1,40 +1,53 @@
 using UnityEngine;
+using System.Collections;
 
-public class BossManMovement : MonoBehaviour {
-    // Drag your ragdoll's central Rigidbody (like the Torso) here
+public class BossManMovement : MonoBehaviour
+{
     public Rigidbody2D mainBody;
-
-    // Drag the GameObject that has the Animator on it here
-    // This might be the same GameObject as this script, or a child (like the "Sprite")
     public Animator animator;
 
-    // How fast to move
     public float moveSpeed = 10f;
+    public int moveDir = 0; // 1 = right, 0 = idle, -1 = slide
+    private bool cooldown = false;
 
-    private float horizontalInput;
-
-    void Update() {
-        // 1. Get input from A/D keys
-        horizontalInput = Input.GetAxis("Horizontal"); // -1 for A, 1 for D
-
-        if (animator == null) {
-            // If animator is missing, just skip the animation logic
-            return;
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && !cooldown)
+        {
+            Debug.Log("Space key pressed!");
+            moveDir = 0;
+            StartCoroutine(CooldownRoutine(1f));
         }
 
-        // 2. Tell the Animator the speed
-        // We use Mathf.Abs to always send a positive speed (0 if idle, >0 if moving left or right)
-        animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
+        if (animator != null)
+            animator.SetInteger("direction", moveDir);
     }
 
-    void FixedUpdate() {
-        if (mainBody == null) {
+    void FixedUpdate()
+    {
+        if (mainBody == null)
+        {
             Debug.LogError("Main Rigidbody is not assigned!");
             return;
         }
 
-        // 4. Apply the movement as a velocity
-        mainBody.linearVelocity = new Vector2(horizontalInput * moveSpeed, mainBody.linearVelocity.y);
+        mainBody.linearVelocity = new Vector2(moveDir * moveSpeed, mainBody.linearVelocity.y);
     }
 
+    IEnumerator CooldownRoutine(float time)
+    {
+        cooldown = true;
+        yield return new WaitForSeconds(time);
+        cooldown = false;
+        moveDir = 1;
+    }
+
+    public IEnumerator SlideBackRoutine()
+    {
+        moveDir = -1;
+        cooldown = true;
+        yield return new WaitForSeconds(5f);
+        cooldown = false;
+        moveDir = 1;
+    }
 }
