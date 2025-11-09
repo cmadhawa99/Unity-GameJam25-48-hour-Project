@@ -72,6 +72,7 @@ public class MountainGenerator : MonoBehaviour {
     void CreateChunk(int index) {
         GameObject chunkObj = new GameObject("Chunk " + index);
         chunkObj.transform.parent = transform;
+        chunkObj.transform.position = new Vector3(index * chunkWidth, 0f, 0f);
 
         MeshFilter mf = chunkObj.AddComponent<MeshFilter>();
         MeshRenderer mr = chunkObj.AddComponent<MeshRenderer>();
@@ -79,37 +80,73 @@ public class MountainGenerator : MonoBehaviour {
 
         mr.sharedMaterial = GetComponent<MeshRenderer>().sharedMaterial;
 
-        float startX = index * chunkWidth;
         float step = chunkWidth / (pointsPerChunk - 1);
 
-        // Generate top line points using layered Perlin noise (more “mountainy”)
+        // --- 1. GENERATE COLLIDER POINTS (Must be precise) ---
+        // These points will range from localX=0 to localX=chunkWidth
+
+        List<Vector2> colliderPoints = new List<Vector2>();
+        // We store these in a Vector3[] to reuse them for the mesh
         Vector3[] topPoints = new Vector3[pointsPerChunk];
+
         for (int i = 0; i < pointsPerChunk; i++) {
-            float x = startX + i * step;
+            // Use a normalized 't' value to guarantee t=0.0 at i=0 and t=1.0 at i=pointsPerChunk-1
+            // This prevents floating-point drift from (i * step)
+            float t = (float)i / (pointsPerChunk - 1);
+            float localX = t * chunkWidth;
+            float worldX = (index * chunkWidth) + localX;
 
-            // Use multi-layer noise for realistic variation
-            float y = Mathf.PerlinNoise(seed, x * noiseScale) * heightScale;
-            y += Mathf.PerlinNoise(seed * 0.5f, x * noiseScale * 0.5f) * heightScale * 0.5f;
-            y -= Mathf.PerlinNoise(seed * 2f, x * noiseScale * 2f) * heightScale * 0.3f;
+            float y = Mathf.PerlinNoise(seed, worldX * noiseScale) * heightScale;
+            y += Mathf.PerlinNoise(seed * 0.5f, worldX * noiseScale * 0.5f) * heightScale * 0.5f;
+            y -= Mathf.PerlinNoise(seed * 2f, worldX * noiseScale * 2f) * heightScale * 0.3f;
 
-            topPoints[i] = new Vector3(x, y, 0);
+            topPoints[i] = new Vector3(localX, y, 0);
+            colliderPoints.Add(new Vector2(localX, y));
         }
 
-        // Build mesh vertices
-        List<Vector3> verts = new List<Vector3>(topPoints);
-        verts.Add(new Vector3(startX + chunkWidth, groundDepth, 0));
-        verts.Add(new Vector3(startX, groundDepth, 0));
+        // Add bottom points for the collider
+        colliderPoints.Add(new Vector2(chunkWidth, groundDepth));
+        colliderPoints.Add(new Vector2(0, groundDepth));
+        poly.points = colliderPoints.ToArray();
 
-        // Triangles
+
+        // --- 2. GENERATE MESH VERTICES (With overlap) ---
+        // We copy the collider points and add ONE EXTRA vertex
+        // to "stitch" this mesh to the next one.
+
+        List<Vector3> verts = new List<Vector3>(topPoints);
+
+        // Calculate the "stitch" vertex (which is the first vertex of the *next* chunk)
+        float next_localX = chunkWidth + step;
+        float next_worldX = (index * chunkWidth) + next_localX;
+        float next_y = Mathf.PerlinNoise(seed, next_worldX * noiseScale) * heightScale;
+        next_y += Mathf.PerlinNoise(seed * 0.5f, next_worldX * noiseScale * 0.5f) * heightScale * 0.5f;
+        next_y -= Mathf.PerlinNoise(seed * 2f, next_worldX * noiseScale * 2f) * heightScale * 0.3f;
+
+        verts.Add(new Vector3(next_localX, next_y, 0)); // Add the stitch vertex
+
+        // Our top line now has (pointsPerChunk + 1) vertices [indices 0 to pointsPerChunk]
+
+        // Add bottom vertices, aligned with the new, wider mesh
+        int bottomRightIdx = pointsPerChunk + 1; // Index after the stitch vertex
+        int bottomLeftIdx = pointsPerChunk + 2;  // Index after that
+
+        verts.Add(new Vector3(next_localX, groundDepth, 0)); // New bottom-right
+        verts.Add(new Vector3(0, groundDepth, 0));           // Original bottom-left
+
+
+        // --- 3. TRIANGLES (Adjusted for the extra vertex) ---
+        // We now build 'pointsPerChunk' quads, not 'pointsPerChunk - 1'
+
         List<int> tris = new List<int>();
-        for (int i = 0; i < pointsPerChunk - 1; i++) {
+        for (int i = 0; i < pointsPerChunk; i++) { // Loop one more time
             tris.Add(i);
             tris.Add(i + 1);
-            tris.Add(pointsPerChunk);
+            tris.Add(bottomRightIdx);
 
             tris.Add(i + 1);
-            tris.Add(pointsPerChunk + 1);
-            tris.Add(pointsPerChunk);
+            tris.Add(bottomLeftIdx);
+            tris.Add(bottomRightIdx);
         }
 
         Mesh mesh = new Mesh();
@@ -118,16 +155,6 @@ public class MountainGenerator : MonoBehaviour {
         mesh.RecalculateNormals();
         mesh.RecalculateBounds();
         mf.mesh = mesh;
-
-        // Create polygon shape for collider (enclosed ground)
-        List<Vector2> colliderPoints = new List<Vector2>();
-        for (int i = 0; i < pointsPerChunk; i++)
-            colliderPoints.Add(new Vector2(topPoints[i].x, topPoints[i].y));
-
-        colliderPoints.Add(new Vector2(startX + chunkWidth, groundDepth));
-        colliderPoints.Add(new Vector2(startX, groundDepth));
-
-        poly.points = colliderPoints.ToArray();
 
         chunks[index] = chunkObj;
     }
