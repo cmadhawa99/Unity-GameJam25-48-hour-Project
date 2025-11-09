@@ -12,25 +12,20 @@ public class DayNightCycle : MonoBehaviour {
     [Header("Cycle Settings")]
     [SerializeField]
     private float cycleDurationSeconds = 60f; // Full cycle length in seconds
-
-    private float cycleProgress; // Current point in the cycle (0.0 to 1.0)
+    public float CycleProgress { get; private set; } // Current point in the cycle (0.0 to 1.0)
 
     void Update() {
         if (globalLight == null) return;
 
         // 1. Increment the cycle progress
-        // Time.deltaTime is the time since the last frame
-        // Dividing by cycleDurationSeconds makes it progress from 0 to 1 over that duration
-        cycleProgress += Time.deltaTime / cycleDurationSeconds;
+        CycleProgress += Time.deltaTime / cycleDurationSeconds;
 
         // 2. Loop the progress
-        // If progress is 1 (or more), reset it to 0
-        if (cycleProgress >= 1.0f) {
-            cycleProgress -= 1.0f;
+        if (CycleProgress >= 1.0f) {
+            CycleProgress -= 1.0f;
         }
 
         // 3. Apply the new light color
-        // Evaluate the gradient at the current progress point
-        globalLight.color = lightColor.Evaluate(cycleProgress);
+        globalLight.color = lightColor.Evaluate(CycleProgress);
     }
 }
