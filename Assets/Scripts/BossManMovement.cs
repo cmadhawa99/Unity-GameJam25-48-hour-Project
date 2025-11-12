@@ -10,12 +10,16 @@ public class BossManMovement : MonoBehaviour {
 
     // How fast to move
     public float moveSpeed = 10f;
+    public float pushSpeed = 7f;
 
     private float horizontalInput;
+    private bool isPushing;
 
     void Update() {
         // 1. Get input from A/D keys
         horizontalInput = Input.GetAxis("Horizontal"); // -1 for A, 1 for D
+
+        isPushing = Input.GetKey(KeyCode.Space);
 
         if (animator == null) {
             // If animator is missing, just skip the animation logic
@@ -23,8 +27,10 @@ public class BossManMovement : MonoBehaviour {
         }
 
         // 2. Tell the Animator the speed
-        // We use Mathf.Abs to always send a positive speed (0 if idle, >0 if moving left or right)
-        animator.SetFloat("Speed", Mathf.Abs(horizontalInput));
+        // Use Mathf.Abs to always send a positive speed (0 if idle, >0 if moving left or right)
+        float animationSpeed = Mathf.Abs(horizontalInput);
+        animator.SetFloat("Speed", animationSpeed);
+        animator.SetBool("isPushing", isPushing && animationSpeed > 0.01f);
     }
 
     void FixedUpdate() {
@@ -33,8 +39,10 @@ public class BossManMovement : MonoBehaviour {
             return;
         }
 
+        float currentSpeed = isPushing ? pushSpeed : moveSpeed;
+
         // 4. Apply the movement as a velocity
-        mainBody.linearVelocity = new Vector2(horizontalInput * moveSpeed, mainBody.linearVelocity.y);
+        mainBody.linearVelocity = new Vector2(horizontalInput * currentSpeed, mainBody.linearVelocity.y);
     }
 
 }
