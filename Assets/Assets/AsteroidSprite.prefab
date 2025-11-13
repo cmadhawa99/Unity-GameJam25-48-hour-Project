@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8704042339180430904
+--- !u!1 &840495145063955522
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,12 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2806504582953067219}
-  - component: {fileID: 6398134589268090405}
-  - component: {fileID: -1820762270692529762}
-  - component: {fileID: 9099504400281701695}
-  - component: {fileID: 4241464526168258837}
-  - component: {fileID: 1924905793892627196}
+  - component: {fileID: 1230676529648012817}
+  - component: {fileID: 6641254822827738616}
+  - component: {fileID: 2429059101225035331}
+  - component: {fileID: 938928972022704689}
+  - component: {fileID: 7603501503123448729}
   m_Layer: 0
   m_Name: AsteroidSprite
   m_TagString: Untagged
@@ -21,28 +20,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2806504582953067219
+--- !u!4 &1230676529648012817
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8704042339180430904}
+  m_GameObject: {fileID: 840495145063955522}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -78.7, y: 55.6, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalRotation: {x: -0, y: -0, z: 0.09984621, w: 0.9950029}
+  m_LocalPosition: {x: -19.53539, y: -7.8, z: 0}
+  m_LocalScale: {x: 6.6, y: 6.478461, z: 0.5588011}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6398134589268090405
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 11.461}
+--- !u!212 &6641254822827738616
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8704042339180430904}
+  m_GameObject: {fileID: 840495145063955522}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -91,34 +90,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-1820762270692529762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8704042339180430904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebdad950e2707d54891644bc4cff90e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!50 &9099504400281701695
+--- !u!50 &2429059101225035331
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8704042339180430904}
+  m_GameObject: {fileID: 840495145063955522}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 2
+  m_UseAutoMass: 1
+  m_Mass: 47.263153
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 10
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -130,13 +117,13 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &4241464526168258837
+--- !u!58 &938928972022704689
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8704042339180430904}
+  m_GameObject: {fileID: 840495145063955522}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -164,18 +151,27 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.007238388, y: -0.009651184}
-  m_Radius: 0.57002866
---- !u!114 &1924905793892627196
-MonoBehaviour:
+  m_Offset: {x: -0.0018684864, y: -0.0056054117}
+  m_Radius: 0.5876821
+--- !u!95 &7603501503123448729
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8704042339180430904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c18613fec8e0c746bf38cc69ec85c14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionParticlePrefab: {fileID: 3520208767405866225, guid: 59aa64ff0bae832489e46e88734c6f52, type: 3}
+  m_GameObject: {fileID: 840495145063955522}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9d4c93e63df50bc42ba83091cf89f2d2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
