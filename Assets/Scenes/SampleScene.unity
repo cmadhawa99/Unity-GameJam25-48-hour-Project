@@ -726,6 +726,11 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.637176, y: 0.6315359}
   m_EdgeRadius: 0
+--- !u!4 &388989823 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2806504582953067219, guid: 366b6eb363c439341bcdc9d3d7f0ac83, type: 3}
+  m_PrefabInstance: {fileID: 6528116620318729357}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &431314246
 GameObject:
   m_ObjectHideFlags: 0
@@ -736,6 +741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 431314247}
   - component: {fileID: 431314248}
+  - component: {fileID: 431314249}
   m_Layer: 3
   m_Name: ObstacleSpawner
   m_TagString: Untagged
@@ -752,11 +758,11 @@ Transform:
   m_GameObject: {fileID: 431314246}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 75.3, y: 30.8, z: -0.06923962}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.12, y: 1.92, z: -0.5357799}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1388412251}
+  m_Father: {fileID: 388989823}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &431314248
 MonoBehaviour:
@@ -778,6 +784,33 @@ MonoBehaviour:
   spawnRangeX: 8
   minScale: 2
   maxScale: 8
+--- !u!50 &431314249
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431314246}
+  m_BodyType: 2
+  m_Simulated: 0
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &438243983
 GameObject:
   m_ObjectHideFlags: 0
@@ -2130,8 +2163,7 @@ Transform:
   m_LocalPosition: {x: 20.5, y: 46.1, z: -0.46654028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 431314247}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1388412252
@@ -2605,8 +2637,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainBody: {fileID: 1913402404}
   animator: {fileID: 1913402405}
-  moveSpeed: 10
-  pushSpeed: 7
+  moveSpeed: 50
+  pushSpeed: 30
   moveDir: 0
 --- !u!114 &1913402408
 MonoBehaviour:
@@ -3005,11 +3037,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2806504582953067219, guid: 366b6eb363c439341bcdc9d3d7f0ac83, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -78.7
+      value: 82
       objectReference: {fileID: 0}
     - target: {fileID: 2806504582953067219, guid: 366b6eb363c439341bcdc9d3d7f0ac83, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 55.6
+      value: 52.9
       objectReference: {fileID: 0}
     - target: {fileID: 2806504582953067219, guid: 366b6eb363c439341bcdc9d3d7f0ac83, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3047,9 +3079,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: AsteroidSprite
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8704042339180430904, guid: 366b6eb363c439341bcdc9d3d7f0ac83, type: 3}
+      propertyPath: m_TagString
+      value: RockRoll
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 1924905793892627196, guid: 366b6eb363c439341bcdc9d3d7f0ac83, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2806504582953067219, guid: 366b6eb363c439341bcdc9d3d7f0ac83, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 431314247}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 366b6eb363c439341bcdc9d3d7f0ac83, type: 3}
 --- !u!1660057539 &9223372036854775807

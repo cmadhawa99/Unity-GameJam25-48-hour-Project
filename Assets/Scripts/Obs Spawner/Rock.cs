@@ -6,7 +6,7 @@ public class Rock : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D collision) {
         // Check if the object we collided with has the "Player" tag
-        if (collision.gameObject.CompareTag("Player")) {
+        if (collision.gameObject.CompareTag("RockRoll")) {
             Explode();
         }
     }
